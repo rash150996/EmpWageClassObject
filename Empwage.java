@@ -4,7 +4,7 @@ public class Empwage
 	double empCheck=0.0;
 	int dailyWageFull=0;
 	int dailyWagePart=0;
-	double jobType = 0.0;
+	int jobType = 0;
 
 	private static final int IS_PRESENT = 1;
 	private static final int WAGE_PER_HOUR=20;
@@ -23,17 +23,19 @@ public class Empwage
 		{
 			System.out.println("Employee is Present");
 			jobType = (int)Math.floor(Math.random() * 10) % 2;
-			if ( jobType == 1 )
-			{
-				System.out.println("Employee works Full Time");
-				dailyWageFull = (WAGE_PER_HOUR * HOURS_PER_DAY_FULL);
-				System.out.println("Daily wage would be = Rs." + dailyWageFull);
-			}
-			else
-			{
-            System.out.println("Employee works Part Time");
-            dailyWagePart = (WAGE_PER_HOUR * HOURS_PER_DAY_PART);
-            System.out.println("Daily wage would be = Rs." + dailyWagePart);
+			switch(jobType){
+				case 1:
+					System.out.println("Employee works Full Time");
+					dailyWageFull = (WAGE_PER_HOUR * HOURS_PER_DAY_FULL);
+					System.out.println("Daily wage would be = Rs." + dailyWageFull);
+					break;
+				case 0:
+					System.out.println("Employee works Part Time");
+					dailyWagePart = (WAGE_PER_HOUR * HOURS_PER_DAY_PART);
+					System.out.println("Daily wage would be = Rs." + dailyWagePart);
+					break;
+				default:
+					System.out.println("Invalid");
 			}
 		}
 
