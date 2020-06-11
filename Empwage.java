@@ -5,11 +5,14 @@ public class Empwage
 	int dailyWageFull=0;
 	int dailyWagePart=0;
 	int jobType = 0;
+	int monthlyWageFull=0;
+	int monthlyWagePart=0;
 
 	private static final int IS_PRESENT = 1;
 	private static final int WAGE_PER_HOUR=20;
 	private static final int HOURS_PER_DAY_FULL=8;
 	private static final int HOURS_PER_DAY_PART=4;
+	private static final int DAYS_PER_MONTH = 20;
 
    public void getWelcomeMessage()
    {
@@ -28,11 +31,15 @@ public class Empwage
 					System.out.println("Employee works Full Time");
 					dailyWageFull = (WAGE_PER_HOUR * HOURS_PER_DAY_FULL);
 					System.out.println("Daily wage would be = Rs." + dailyWageFull);
+					monthlyWageFull = (dailyWageFull * DAYS_PER_MONTH );
+					System.out.println("Monthly wage would be = Rs." + monthlyWageFull );
 					break;
 				case 0:
 					System.out.println("Employee works Part Time");
 					dailyWagePart = (WAGE_PER_HOUR * HOURS_PER_DAY_PART);
 					System.out.println("Daily wage would be = Rs." + dailyWagePart);
+					monthlyWagePart = (dailyWagePart * DAYS_PER_MONTH );
+					System.out.println("Monthly wage would be = Rs." + monthlyWagePart );
 					break;
 				default:
 					System.out.println("Invalid");
