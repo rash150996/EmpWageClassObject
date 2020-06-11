@@ -2,24 +2,26 @@ public class Empwage
 {
 
 	double empCheck=0.0;
-	int dailyWageFull=0;
-	int dailyWagePart=0;
 	int jobType = 0;
-	int monthlyWageFull=0;
-	int monthlyWagePart=0;
+	int empHrs=0;
+	int totalEmpHrs=0;
+	int totalWorkingDays=0;
+	int totalSalary = 0;
+	int dailyWage = 0;
 
 	private static final int IS_PRESENT = 1;
 	private static final int WAGE_PER_HOUR=20;
 	private static final int HOURS_PER_DAY_FULL=8;
 	private static final int HOURS_PER_DAY_PART=4;
 	private static final int DAYS_PER_MONTH = 20;
+	private static final int HOURS_PER_MONTH = 100;
 
    public void getWelcomeMessage()
    {
       System.out.println("Welcome To Employee Wage Computation Process");
    }
 
-	public void getAttendance()
+	public int getEmpHrs()
 	{
 		empCheck = Math.floor(Math.random() * 10) % 2;
 		if ( empCheck == IS_PRESENT)
@@ -28,33 +30,53 @@ public class Empwage
 			jobType = (int)Math.floor(Math.random() * 10) % 2;
 			switch(jobType){
 				case 1:
-					System.out.println("Employee works Full Time");
-					dailyWageFull = (WAGE_PER_HOUR * HOURS_PER_DAY_FULL);
-					System.out.println("Daily wage would be = Rs." + dailyWageFull);
-					monthlyWageFull = (dailyWageFull * DAYS_PER_MONTH );
-					System.out.println("Monthly wage would be = Rs." + monthlyWageFull );
+					empHrs=8;
 					break;
 				case 0:
-					System.out.println("Employee works Part Time");
-					dailyWagePart = (WAGE_PER_HOUR * HOURS_PER_DAY_PART);
-					System.out.println("Daily wage would be = Rs." + dailyWagePart);
-					monthlyWagePart = (dailyWagePart * DAYS_PER_MONTH );
-					System.out.println("Monthly wage would be = Rs." + monthlyWagePart );
+					empHrs=4;
 					break;
 				default:
-					System.out.println("Invalid");
+					empHrs=0;
+					break;
 			}
 		}
 
 		else
 			System.out.println("Employee is Absent");
+		return empHrs;
 	}
+
+	public void getEmpSalary(int empHrs)
+	{
+		this.empHrs=empHrs;
+		while ( totalWorkingDays <= DAYS_PER_MONTH && totalEmpHrs <= HOURS_PER_MONTH )
+		{
+			totalWorkingDays+=1;
+			if ( (totalEmpHrs + empHrs) < HOURS_PER_MONTH )
+			{
+				totalEmpHrs+=empHrs;
+			}
+			else
+			{
+				if((HOURS_PER_MONTH - totalEmpHrs) == 4)
+					totalEmpHrs+=4;
+				break;
+			}
+			dailyWage = (empHrs * WAGE_PER_HOUR);
+		}
+		System.out.println("Total Working Hours = " + totalEmpHrs );
+		totalSalary = (totalEmpHrs * WAGE_PER_HOUR);
+		System.out.println("Total salary = " + totalSalary);
+	}
+
+
 
    public static void main(String[] args)
    {
       Empwage emp = new Empwage();
       emp.getWelcomeMessage();
-		emp.getAttendance();
+		int temp = emp.getEmpHrs();
+		emp.getEmpSalary(temp);
    }
 
 }
