@@ -2,11 +2,14 @@ public class Empwage
 {
 
 	double empCheck=0.0;
-	int dailyWage=0;
+	int dailyWageFull=0;
+	int dailyWagePart=0;
+	double jobType = 0.0;
 
-	private static final int IS_FULL_TIME = 1;
+	private static final int IS_PRESENT = 1;
 	private static final int WAGE_PER_HOUR=20;
-	private static final int HOURS_PER_DAY=8;
+	private static final int HOURS_PER_DAY_FULL=8;
+	private static final int HOURS_PER_DAY_PART=4;
 
    public void getWelcomeMessage()
    {
@@ -16,11 +19,22 @@ public class Empwage
 	public void getAttendance()
 	{
 		empCheck = Math.floor(Math.random() * 10) % 2;
-		if ( empCheck == IS_FULL_TIME)
+		if ( empCheck == IS_PRESENT)
 		{
 			System.out.println("Employee is Present");
-			dailyWage = (WAGE_PER_HOUR * HOURS_PER_DAY);
-			System.out.println("Daily wage would be = Rs." + dailyWage);
+			jobType = (int)Math.floor(Math.random() * 10) % 2;
+			if ( jobType == 1 )
+			{
+				System.out.println("Employee works Full Time");
+				dailyWageFull = (WAGE_PER_HOUR * HOURS_PER_DAY_FULL);
+				System.out.println("Daily wage would be = Rs." + dailyWageFull);
+			}
+			else
+			{
+            System.out.println("Employee works Part Time");
+            dailyWagePart = (WAGE_PER_HOUR * HOURS_PER_DAY_PART);
+            System.out.println("Daily wage would be = Rs." + dailyWagePart);
+			}
 		}
 
 		else
