@@ -16,10 +16,10 @@ public class Empwage
 	private static final int DAYS_PER_MONTH = 20;
 	private static final int HOURS_PER_MONTH = 100;
 
-   public void getWelcomeMessage()
-   {
-      System.out.println("Welcome To Employee Wage Computation Process");
-   }
+	public void getWelcomeMessage()
+	{
+		System.out.println("Welcome To Employee Wage Computation Process");
+	}
 
 	public int getEmpHrs()
 	{
