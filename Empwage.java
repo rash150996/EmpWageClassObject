@@ -8,6 +8,9 @@ public class Empwage
 	int totalWorkingDays=0;
 	int totalSalary = 0;
 	int dailyWage = 0;
+	int daysPerMonth = 0;
+	int hrsPerMonth = 0;
+	int wagePerHr = 0;
 
 	private static final int IS_PRESENT = 1;
 	private static final int WAGE_PER_HOUR=20;
@@ -46,27 +49,31 @@ public class Empwage
 		return empHrs;
 	}
 
-	public void getEmpSalary(int empHrs)
+	public void getEmpSalary(String company, int daysPerMonth, int hrsPerMonth, int wagePerHr, int empHrs)
 	{
 		this.empHrs=empHrs;
-		while ( totalWorkingDays <= DAYS_PER_MONTH && totalEmpHrs <= HOURS_PER_MONTH )
+		wagePerHr=wagePerHr;
+		daysPerMonth=daysPerMonth;
+		hrsPerMonth = hrsPerMonth;
+		company=company;
+		while ( totalWorkingDays <= daysPerMonth && totalEmpHrs <= hrsPerMonth )
 		{
 			totalWorkingDays+=1;
-			if ( (totalEmpHrs + empHrs) < HOURS_PER_MONTH )
+			if ( (totalEmpHrs + empHrs) < hrsPerMonth )
 			{
 				totalEmpHrs+=empHrs;
 			}
 			else
 			{
-				if((HOURS_PER_MONTH - totalEmpHrs) == 4)
+				if((hrsPerMonth - totalEmpHrs) == 4)
 					totalEmpHrs+=4;
 				break;
 			}
-			dailyWage = (empHrs * WAGE_PER_HOUR);
+			dailyWage = (empHrs * wagePerHr);
 		}
 		System.out.println("Total Working Hours = " + totalEmpHrs );
-		totalSalary = (totalEmpHrs * WAGE_PER_HOUR);
-		System.out.println("Total salary = " + totalSalary);
+		totalSalary = (totalEmpHrs * wagePerHr);
+		System.out.println("Total salary for employees of "+ company +" is = Rs." + totalSalary);
 	}
 
 
@@ -76,7 +83,9 @@ public class Empwage
       Empwage emp = new Empwage();
       emp.getWelcomeMessage();
 		int temp = emp.getEmpHrs();
-		emp.getEmpSalary(temp);
+		emp.getEmpSalary("DMart", 26, 6, 10, temp);
+		emp.getEmpSalary("Reliance fresh", 20, 9, 18, temp);
    }
 
 }
+
