@@ -52,10 +52,10 @@ public class Empwage
 	public void getEmpSalary(String company, int daysPerMonth, int hrsPerMonth, int wagePerHr, int empHrs)
 	{
 		this.empHrs=empHrs;
-		wagePerHr=wagePerHr;
-		daysPerMonth=daysPerMonth;
-		hrsPerMonth = hrsPerMonth;
-		company=company;
+		this.wagePerHr=wagePerHr;
+		this.daysPerMonth=daysPerMonth;
+		this.hrsPerMonth = hrsPerMonth;
+		this.company=company;
 		while ( totalWorkingDays <= daysPerMonth && totalEmpHrs <= hrsPerMonth )
 		{
 			totalWorkingDays+=1;
