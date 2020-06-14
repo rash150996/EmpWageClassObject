@@ -94,8 +94,8 @@ class Empwage extends Empdetails implements Employee
 	}
 
 
-   public static void main(String[] args)
-   {
+	public static void main(String[] args)
+	{
 		Employee emp = new Empwage();
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the Company you would like access the wage for:[DMart, Decathlon, Reliance]");
@@ -105,10 +105,9 @@ class Empwage extends Empdetails implements Employee
 		else if( company.equals("Decathlon"))
 			emp.getEmpWage(7, 40, 20, 140, "Decathlon");
 		else
-         emp.getEmpWage(12, 30, 22, 240, "Reliance");
+			emp.getEmpWage(12, 30, 22, 240, "Reliance");
 
-
-   }
+	}
 
 }
 
