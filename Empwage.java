@@ -13,6 +13,7 @@ class Empdetails
 	int wagePerHr= 0;
 	int daysPerMonth= 0;
 	int hrsPerMonth = 0;
+	int i=0;
 	String company= "";
 
 	public void getWelcomeMessage()
@@ -25,7 +26,7 @@ class Empdetails
 interface Employee {
 
 	final int IS_PRESENT = 1;
-	public int getEmpWage(int empHrs, int wagePerHr, int daysPerMonth, int hrsPerMonth, String company);
+	public void getEmpWage(int empHrs, int wagePerHr, int daysPerMonth, int hrsPerMonth, String company);
 }
 
 class Empwage extends Empdetails implements Employee
@@ -56,12 +57,14 @@ class Empwage extends Empdetails implements Employee
 		return empHrs;
 	}
 
-	public int getEmpWage(int empHrs, int wagePerHr, int daysPerMonth, int hrsPerMonth, String company)
+	public void getEmpWage(int empHrs, int wagePerHr, int daysPerMonth, int hrsPerMonth, String company)
 	{
 		this.wagePerHr= wagePerHr;
 		this.daysPerMonth= daysPerMonth;
 		this.hrsPerMonth = hrsPerMonth;
 		this.company= company;
+		int[] dailywage=new int[daysPerMonth+1];
+		int[] totalsalary = new int[daysPerMonth+1];
 		while ( totalWorkingDays <= daysPerMonth && totalEmpHrs <= hrsPerMonth )
 		{
 			empHrs=getEmpHrs(empHrs);
@@ -73,21 +76,22 @@ class Empwage extends Empdetails implements Employee
 			else
 				break;
 			dailyWage = (empHrs * wagePerHr);
+			totalSalary+=dailyWage;
+			dailywage[i] = dailyWage;
+			totalsalary[i] = totalSalary;
+			i++;
 		}
-		totalSalary = (totalEmpHrs * wagePerHr);
-		//System.out.println("Details of "+ company+" is:");
-		return totalSalary;
+		System.out.println("Days \t Dailywage \t TotalSalary ");
+		System.out.println();
+		for(int j=0; j< dailywage.length; j++)
+			System.out.println("Day "+(j+1)+"\t  "+dailywage[j]+"\t  \t   "+totalsalary[j]);
 	}
 
 
    public static void main(String[] args)
    {
       Employee emp = new Empwage();
-		ArrayList<Integer> salary =  new ArrayList<Integer>();
-		salary.add(0, emp.getEmpWage(9, 60, 22, 180, "Decathlon"));
-		salary.add(1, emp.getEmpWage(6, 90, 26, 200, "DMart"));
-		for (int i=0; i< salary.size(); i++)
-		 System.out.println("Per month wage :"+salary.get(i));
+		emp.getEmpWage(9, 60, 26, 180, "Dmart");
    }
 
 }
