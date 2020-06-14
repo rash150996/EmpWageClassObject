@@ -1,6 +1,6 @@
-class Empwage
+import java.io.*;
+class Empdetails
 {
-
 	double empCheck=0.0;
 	int jobType = 0;
 	int empHrs=0;
@@ -14,12 +14,23 @@ class Empwage
 	int hrsPerMonth = 0;
 	String company= "";
 
-	private static final int IS_PRESENT = 1;
-
 	public void getWelcomeMessage()
 	{
 		System.out.println("Welcome To Employee Wage Computation Process");
 	}
+}
+
+
+interface Employee {
+
+	final int IS_PRESENT = 1;
+	public void getEmpWage(int empHrs, int wagePerHr, int daysPerMonth, int hrsPerMonth, String company);
+}
+
+class Empwage extends Empdetails implements Employee
+{
+
+	Empwage() { }
 
 	public int getEmpHrs(int hrs)
 	{
@@ -69,10 +80,9 @@ class Empwage
 
    public static void main(String[] args)
    {
-      Empwage emp[] = new Empwage[5];
+      Employee emp[] = new Empwage[5];
 		emp[0] = new Empwage();
 		emp[1] = new Empwage();
-		Empwage employee = new Empwage();
 		System.out.println("Details for Company ");
 		emp[0].getEmpWage(9, 60, 22, 180, "Decathlon");
 		emp[1].getEmpWage(6, 90, 26, 200, "DMart" );
