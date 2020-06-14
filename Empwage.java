@@ -83,15 +83,31 @@ class Empwage extends Empdetails implements Employee
 		}
 		System.out.println("Days \t Dailywage \t TotalSalary ");
 		System.out.println();
+		int i=1;
 		for(int j=0; j< dailywage.length; j++)
-			System.out.println("Day "+(j+1)+"\t  "+dailywage[j]+"\t  \t   "+totalsalary[j]);
+		{
+			if( i > daysPerMonth)
+				break;
+			System.out.println("Day "+i+"\t  "+dailywage[j]+"\t  \t   "+totalsalary[j]);
+			i+=1;
+		}
 	}
 
 
    public static void main(String[] args)
    {
-      Employee emp = new Empwage();
-		emp.getEmpWage(9, 60, 26, 180, "Dmart");
+		Employee emp = new Empwage();
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter the Company you would like access the wage for:[DMart, Decathlon, Reliance]");
+		String company = scanner.next();
+		if( company.equals("DMart"))
+			emp.getEmpWage(9, 60, 26, 180, "Dmart");
+		else if( company.equals("Decathlon"))
+			emp.getEmpWage(7, 40, 20, 140, "Decathlon");
+		else
+         emp.getEmpWage(12, 30, 22, 240, "Reliance");
+
+
    }
 
 }
