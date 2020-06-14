@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.*;
 class Empdetails
 {
 	double empCheck=0.0;
@@ -24,7 +25,7 @@ class Empdetails
 interface Employee {
 
 	final int IS_PRESENT = 1;
-	public void getEmpWage(int empHrs, int wagePerHr, int daysPerMonth, int hrsPerMonth, String company);
+	public int getEmpWage(int empHrs, int wagePerHr, int daysPerMonth, int hrsPerMonth, String company);
 }
 
 class Empwage extends Empdetails implements Employee
@@ -55,7 +56,7 @@ class Empwage extends Empdetails implements Employee
 		return empHrs;
 	}
 
-	public void getEmpWage(int empHrs, int wagePerHr, int daysPerMonth, int hrsPerMonth, String company)
+	public int getEmpWage(int empHrs, int wagePerHr, int daysPerMonth, int hrsPerMonth, String company)
 	{
 		this.wagePerHr= wagePerHr;
 		this.daysPerMonth= daysPerMonth;
@@ -74,20 +75,22 @@ class Empwage extends Empdetails implements Employee
 			dailyWage = (empHrs * wagePerHr);
 		}
 		totalSalary = (totalEmpHrs * wagePerHr);
-		System.out.println("Total salary for employees of "+ company +" is = Rs." + totalSalary);
+		//System.out.println("Details of "+ company+" is:");
+		return totalSalary;
 	}
 
 
    public static void main(String[] args)
    {
-      Employee emp[] = new Empwage[5];
-		emp[0] = new Empwage();
-		emp[1] = new Empwage();
-		System.out.println("Details for Company ");
-		emp[0].getEmpWage(9, 60, 22, 180, "Decathlon");
-		emp[1].getEmpWage(6, 90, 26, 200, "DMart" );
+      Employee emp = new Empwage();
+		ArrayList<Integer> salary =  new ArrayList<Integer>();
+		salary.add(0, emp.getEmpWage(9, 60, 22, 180, "Decathlon"));
+		salary.add(1, emp.getEmpWage(6, 90, 26, 200, "DMart"));
+		for (int i=0; i< salary.size(); i++)
+		 System.out.println("Per month wage :"+salary.get(i));
    }
 
 }
+
 
 
